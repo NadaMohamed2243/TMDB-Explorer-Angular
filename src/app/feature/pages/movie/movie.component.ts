@@ -1,39 +1,34 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ApiService } from '../../../core/service/api.service';
-import { ImagePathPipe } from "../../../shared/pipes/image-path.pipe";
 import { Movie } from '../../../core/interface/movie';
-import { RouterLink } from '@angular/router';
+import { CardComponent } from '../../../shared/components/ui/card/card.component';
 
 @Component({
   selector: 'app-movie',
-  imports: [ImagePathPipe,RouterLink],
+  imports: [CardComponent],
   templateUrl: './movie.component.html',
-  styleUrl: './movie.component.css'
+  styleUrl: './movie.component.css',
 })
 export class MovieComponent implements OnInit {
-  movies! : Movie[]
-  readonly _apiService = inject(ApiService)
+  movies!: Movie[];
+  readonly _apiService = inject(ApiService);
   ngOnInit(): void {
-    this.getMovies()
+    this.getMovies();
   }
 
-
-  getMovies(){
-    this._apiService.getMovies().subscribe(
-      {
-        next:(res)=>{
-          console.log(res)
-          this.movies =res.results;
-          console.log(this.movies)
-        },
-        error(err) {
-            console.log(err)
-        },
-        complete() {
-          console.log('completed')
-
-        },
-      }
-    )
+  getMovies() {
+    this._apiService.getMovies().subscribe({
+      next: (res) => {
+        console.log(res);
+        this.movies = res.results;
+        console.log(this.movies);
+      },
+      error(err) {
+        console.log(err);
+      },
+      complete() {
+        console.log('completed');
+      },
+    });
   }
 }

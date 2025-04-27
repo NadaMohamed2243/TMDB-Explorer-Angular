@@ -1,39 +1,34 @@
 import { Component, inject } from '@angular/core';
 import { Tv } from '../../../core/interface/tv';
 import { ApiService } from '../../../core/service/api.service';
-import { ImagePathPipe } from "../../../shared/pipes/image-path.pipe";
-import { RouterLink } from '@angular/router';
+import { CardComponent } from '../../../shared/components/ui/card/card.component';
 
 @Component({
   selector: 'app-tv',
-  imports: [ImagePathPipe,RouterLink],
+  imports: [CardComponent],
   templateUrl: './tv.component.html',
-  styleUrl: './tv.component.css'
+  styleUrl: './tv.component.css',
 })
 export class TvComponent {
-  tvs! : Tv[]
-  readonly _apiService = inject(ApiService)
+  tvs!: Tv[];
+  readonly _apiService = inject(ApiService);
   ngOnInit(): void {
-    this.getPeople()
+    this.getPeople();
   }
 
-
-  getPeople(){
-    this._apiService.getTV().subscribe(
-      {
-        next:(res)=>{
-          console.log(res)
-          this.tvs =res.results;
-          console.log(this.tvs)
-        },
-        error(err) {
-            console.log(err)
-        },
-        complete() {
-          console.log('completed')
-
-        },
-      }
-    )
+  getPeople() {
+    this._apiService.getTV().subscribe({
+      next: (res) => {
+        console.log(res);
+        this.tvs = res.results;
+        console.log(this.tvs);
+      },
+      error(err) {
+        console.log(err);
+      },
+      complete() {
+        console.log('completed');
+      },
+    });
   }
 }
