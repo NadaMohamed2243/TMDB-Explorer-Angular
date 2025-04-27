@@ -12,7 +12,7 @@ import { RouterLink } from '@angular/router';
 })
 export class HomeComponent implements OnInit{
   allTrending! : Media[]
-  _apiService = inject(ApiService)
+  readonly _apiService = inject(ApiService)
   ngOnInit(): void {
     this.getAllTrending();
   }

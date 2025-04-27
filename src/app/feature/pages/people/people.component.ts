@@ -12,7 +12,7 @@ import { RouterLink } from '@angular/router';
 })
 export class PeopleComponent {
   people! : People[]
-  _apiService = inject(ApiService)
+  readonly _apiService = inject(ApiService)
   ngOnInit(): void {
     this.getPeople()
   }

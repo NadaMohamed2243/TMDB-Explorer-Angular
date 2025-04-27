@@ -11,7 +11,7 @@ import { ImagePathPipe } from "../../../shared/pipes/image-path.pipe";
 })
 export class DetailsComponent implements OnInit {
   _route = inject(ActivatedRoute);
-  _apiService = inject(ApiService);
+  readonly _apiService = inject(ApiService);
   details!: any;
 
   ngOnInit(): void {

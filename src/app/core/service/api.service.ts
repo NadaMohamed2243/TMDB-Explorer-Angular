@@ -11,49 +11,35 @@ import { Movie } from '../interface/movie';
 })
 export class ApiService {
   _httpClient = inject(HttpClient);
-  private readonly apiKey =
-    'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjYTZjYTY3ZDQ0ODU1NjBiMGYyNzgzYTMxOWM0NWQ5YiIsIm5iZiI6MTc0NTYxOTg1OS4zOTgwMDAyLCJzdWIiOiI2ODBjMGI5M2U1YzEwNWM4YTU2ZTE3NTYiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.lpLE2nhriZD6YPOFM_gB5sTO9mqZb6MzknxjBAG09xc';
   private readonly baseUrl = 'https://api.themoviedb.org/3';
-
-  getHeaders() {
-    return {
-      accept: 'application/json',
-      Authorization: `Bearer ${this.apiKey}`,
-    };
-  }
 
   getTrending(timeWindow: 'day' | 'week' = 'day'): Observable<any> {
     return this._httpClient.get<PaginatedResponse<Media>>(
-      `${this.baseUrl}/trending/all/${timeWindow}`,
-      { headers: this.getHeaders() }
+      `${this.baseUrl}/trending/all/${timeWindow}`
     );
   }
 
   getMovies(timeWindow: 'day' | 'week' = 'day'): Observable<any> {
     return this._httpClient.get<PaginatedResponse<Movie>>(
-      `${this.baseUrl}/trending/movie/${timeWindow}`,
-      { headers: this.getHeaders() }
+      `${this.baseUrl}/trending/movie/${timeWindow}?language=en-US`
     );
   }
 
   getPeople(timeWindow: 'day' | 'week' = 'day'): Observable<any> {
     return this._httpClient.get<PaginatedResponse<People>>(
-      `${this.baseUrl}/trending/person/${timeWindow}`,
-      { headers: this.getHeaders() }
+      `${this.baseUrl}/trending/person/${timeWindow}?language=en-US`
     );
   }
 
   getTV(timeWindow: 'day' | 'week' = 'day'): Observable<any> {
     return this._httpClient.get<PaginatedResponse<Tv>>(
-      `${this.baseUrl}/trending/tv/${timeWindow}`,
-      { headers: this.getHeaders() }
+      `${this.baseUrl}/trending/tv/${timeWindow}?language=en-US`
     );
   }
 
   getDetails(type: string, id: string): Observable<any> {
     return this._httpClient.get(
-      `https://api.themoviedb.org/3/${type}/${id}`,
-      { headers: this.getHeaders() }
+      `https://api.themoviedb.org/3/${type}/${id}?language=en-US`
     );
   }
 }

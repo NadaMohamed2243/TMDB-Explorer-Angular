@@ -12,7 +12,7 @@ import { RouterLink } from '@angular/router';
 })
 export class TvComponent {
   tvs! : Tv[]
-  _apiService = inject(ApiService)
+  readonly _apiService = inject(ApiService)
   ngOnInit(): void {
     this.getPeople()
   }

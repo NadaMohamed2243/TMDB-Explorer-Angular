@@ -12,7 +12,7 @@ import { RouterLink } from '@angular/router';
 })
 export class MovieComponent implements OnInit {
   movies! : Movie[]
-  _apiService = inject(ApiService)
+  readonly _apiService = inject(ApiService)
   ngOnInit(): void {
     this.getMovies()
   }
